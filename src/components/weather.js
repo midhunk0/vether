@@ -3,22 +3,36 @@ import React, { useState, useEffect } from "react";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const Weather = () => {
-    const [city, setCity] = useState("Dallas");
-    const [data, setData] = useState(null);
+const WeatherApp = () => {
+    const [city, setCity] = useState("malappuram");
+    const [weatherData, setWeatherData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
-                const weatherData = await res.json();
-                setData(weatherData);
-            } catch (error) {
-                console.error("Error fetching the data:", error);
-            }
-        };
-        fetchData();
+        if (city) {
+            fetchData();
+        }
     }, [city]);
+
+    const fetchData = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+            const data = await res.json();
+            if (res.ok) {
+                setWeatherData(data);
+                console.log(data)
+            } else {
+                setError("City not found");
+            }
+        } catch (error) {
+            setError("An error occurred while fetching the data");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleCityChange = (e) => {
         setCity(e.target.value);
@@ -26,30 +40,40 @@ const Weather = () => {
 
     return (
         <div>
-            <input type="text" value={city} onChange={handleCityChange} />
-            <button onClick={() => setCity(city)}>Get Weather</button>
-            {/* {data && (
+            <h1>Weather App</h1>
+            <input type="text" placeholder="Enter city name" value={city} onChange={handleCityChange} />
+            <button onClick={fetchData}>Get Weather</button>
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+            {weatherData && (
                 <div>
-                    <h2>Weather in {data.name}</h2>
-                    <p>Temperature: {data.main.temp} K</p>
-                    <p>Weather: {data.weather[0].main}</p>
+                    <h2>Weather in {weatherData.location.name} {weatherData.location.region} {weatherData.location.country}</h2>
+                    <p>Latitude: {weatherData.location.lat}</p>
+                    <p>Longitude: {weatherData.location.lon}</p>
+                    <p>Local Time: {weatherData.location.localtime} in {weatherData.location.tz_id} time zone</p>
+                    <p>Temperature: {weatherData.current.temp_c} °C</p>
+                    <p>Weather: {weatherData.current.condition.text}</p>
+                    <img src={weatherData.current.condition.icon} alt={weatherData.current.condition.text}/>
+                    <p>Feels like: {weatherData.current.feelslike_c} °C</p>
+                    <p>Feels like: {weatherData.current.feelslike_f} °F</p>
+                    <p>Gust: {weatherData.current.gust_kph} kph</p>
+                    <p>Gust: {weatherData.current.gust_mph} mph</p>
+                    <p>Humidity: {weatherData.current.humidity}</p>
+                    <p>Precipitation: {weatherData.current.precip_in} in</p>
+                    <p>Precipitation: {weatherData.current.precip_mm} mm</p>
+                    <p>Pressure: {weatherData.current.pressure_in} in</p>
+                    <p>Pressure: {weatherData.current.pressure_mb} mb</p>
+                    <p>UV: {weatherData.current.uv}</p>
+                    <p>Visual: {weatherData.current.vis_km} km</p>
+                    <p>Visual: {weatherData.current.vis_miles} miles</p>
+                    <p>Wind : {weatherData.current.wind_degree} degree</p>
+                    <p>Wind Direction: {weatherData.current.wind_dir}</p>
+                    <p>Wind Speed: {weatherData.current.wind_kph} kph</p>
+                    <p>Wind Speed: {weatherData.current.wind_mph} mph</p>
                 </div>
-            )} */}
+            )}
         </div>
     );
-}
+};
 
-export default Weather;
-
-
-
-
-/*
-
-get data from a particular location -- temperature(min,max and feels like), air quality index and other gases data, wind speed and direction, max wind gusts, humidity, dew points, pressure, cloud cover, visibility, sun rise and sun set, moon rise and moon set
-live forecast, day forecast, weekly forecast, monthly forecast
-monthly data -- graph and callendar
-charts - -chance of precipitation, wind, humidity, uv, dew points, temperature
-maps -- temperature, clouds, ...
-
-*/
+export default WeatherApp;
