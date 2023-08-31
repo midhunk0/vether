@@ -92,7 +92,7 @@ const WeatherApp = () => {
                     </div>
 
                     <div style={{marginBottom:"-10px"}}>
-                        <div style={{display:"flex", justifyContent:"space-around"}}>
+                        <div>
                             <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                                 Temperature:
                                 {temp==="celcius" 
@@ -108,41 +108,41 @@ const WeatherApp = () => {
                                 }
                             </div>
                         </div>
-                        <div style={{display:"flex", justifyContent:"space-around"}}>
+                        <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                             <p>Weather: {weatherData.current.condition.text}</p>
                             <img src={weatherData.current.condition.icon} alt={weatherData.current.condition.text}/>
                         </div>
-                        <div style={{display:"flex", gap:"10px", alignItems:"center", justifyContent:"center"}}>
+                        <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                             Gust:
                             {speed==="kph" 
                                 ? <p>{weatherData.current.gust_kph} kph</p> 
                                 : <p>{weatherData.current.gust_mph} mph</p>
                             }
                         </div>
-                        <p style={{display:"flex" ,justifyContent:"center"}}>Humidity: {weatherData.current.humidity}</p>
-                        <div style={{display:"flex", gap:"10px", alignItems:"center", justifyContent:"center"}}>
+                        <p style={{display:"flex"}}>Humidity: {weatherData.current.humidity}</p>
+                        <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                             Precipitation:
                             {precip==="in" 
                                 ? <p>{weatherData.current.precip_in} in</p> 
                                 : <p>{weatherData.current.precip_mm} mm</p>
                             }
                         </div>
-                        <div style={{display:"flex", gap:"10px", alignItems:"center", justifyContent:"center"}}>
+                        <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                             Pressure:
                             {pressure==="in" 
                                 ? <p>{weatherData.current.pressure_in} in</p> 
                                 : <p>{weatherData.current.pressure_mb} mb</p>
                             }
                         </div>
-                        <p style={{display:"flex" ,justifyContent:"center"}}>UV: {weatherData.current.uv}</p>
-                        <div style={{display:"flex", gap:"10px", alignItems:"center", justifyContent:"center"}}>
+                        <p style={{display:"flex"}}>UV: {weatherData.current.uv}</p>
+                        <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
                             Visual:
                             {distance==="km" 
                                 ? <p>{weatherData.current.vis_km} km</p> 
                                 : <p>{weatherData.current.vis_miles} miles</p>
                             }
                         </div>
-                        <div style={{display:"flex", justifyContent:"space-around"}}>
+                        <div>
                             <p>Wind : {weatherData.current.wind_degree} degree</p>
                             <p>Wind Direction: {weatherData.current.wind_dir}</p>
                             <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
@@ -153,7 +153,7 @@ const WeatherApp = () => {
                                 }
                             </div>
                         </div>
-                        <div style={{display:"flex", justifyContent:"space-around"}}>
+                        <div>
                             <p>Latitude: {weatherData.location.lat}</p>
                             <p>Longitude: {weatherData.location.lon}</p>
                         </div>
