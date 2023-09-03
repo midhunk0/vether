@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
+import { Offcanvas, Button } from 'react-bootstrap';
+
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -14,6 +16,10 @@ const WeatherApp = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
+    const [showMenu, setShowMenu] = useState(false);
+    
+    const handleClose = () => setShowMenu(false);
+    const handleShow = () => setShowMenu(true);
 
     const setUnit = (unitOptions, selectedUnit, setUnitCallback) => (
         unitOptions.map(unit => (
@@ -52,11 +58,13 @@ const WeatherApp = () => {
         }
     }
 
+
+
     return (
-        <div className="main-div">
+        <div>
             <h1>Weather App</h1>
+            <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)}/>
             <div className="topbar">
-                <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)}/>
                 <div>Temperature:{setUnit(["°C", "°F"], tempUnit, setTempUnit)}</div>
                 <div>Speed:{setUnit(["kph", "mph"], speedUnit, setSpeedUnit)}</div>
                 <div>Pressure:{setUnit(["mb", "in"], pressureUnit, setPressureUnit)}</div>
@@ -71,44 +79,35 @@ const WeatherApp = () => {
                     <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
                     <div className="current-div">                            
                         <div className="mid-div">
-                            <h3>Coordinates</h3>
+                            <img src={data.current.condition.icon} alt="weather-img" style={{margin:"0 40px", width:"100px", height:"100px"}}/>
+                            <p>{data.current.condition.text}</p>
+                            {tempUnit === "°C" 
+                                ? (
+                                    <>
+                                        <p>{data.current.temp_c}°C</p>
+                                        <p>Feels {data.current.feelslike_c}°C</p>
+                                    </>
+                                ) 
+                                : (
+                                    <>
+                                        <p>{data.current.temp_f}°F</p>
+                                        <p>Feels {data.current.feelslike_f}°F</p>
+                                    </>
+                                )
+                            }
+                        </div>
+
+                        <div className="mid-div">
+                            {speedUnit === "kph" 
+                                ? <p>Wind Speed: {data.current.wind_kph}kph</p>
+                                : <p>Wind Speed: {data.current.wind_mph}mph</p>
+                            }
+                            <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
+                        </div>
+
+                        <div className="mid-div">
                             <p>Latitudes: {data.location.lat}</p>
                             <p>Logitudes: {data.location.lon}</p>
-                        </div>
-
-                        <div className="mid-div">
-                            <h3>Current Weather</h3>
-                            <p>Condition: {data.current.condition.text}</p>
-                            <img src={data.current.condition.icon} alt="weather-img" style={{margin:"0 40px", width:"100px", height:"100px"}}/>
-                        </div>
-
-                        <div className="main-sub-div">
-                            <div className="sub-div">
-                                {tempUnit === "°C" 
-                                    ? (
-                                        <>
-                                            <p>Temperature: {data.current.temp_c}°C</p>
-                                            <p>Feels Like: {data.current.feelslike_c}°C</p>
-                                        </>
-                                    ) 
-                                    : (
-                                        <>
-                                            <p>Temperature: {data.current.temp_f}°F</p>
-                                            <p>Feels Like: {data.current.feelslike_f}°F</p>
-                                        </>
-                                    )
-                                }
-                            </div>
-                            <div className="sub-div">
-                                {speedUnit === "kph" 
-                                    ? <p>Wind Speed: {data.current.wind_kph}kph</p>
-                                    : <p>Wind Speed: {data.current.wind_mph}mph</p>
-                                }
-                                <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
-                            </div>
-                        </div>
-
-                        <div className="mid-div">
                             <p>Humidity: {data.current.humidity}</p>
                             <p>Clouds: {data.current.cloud}</p>
                             <p>UV: {data.current.uv}</p>

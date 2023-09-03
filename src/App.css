@@ -15,6 +15,7 @@ maps -- temperature, clouds, ...
 .topbar{
     display: flex;
     align-items: center;
+    margin-top: 10px;
     gap: 30px;
     flex-wrap: wrap;
 }
@@ -38,14 +39,14 @@ input{
     justify-content: center;
     border: 1px solid black;
     border-radius: 16px;
-    width: calc(100vw/5);
+    width: calc(100vw/4);
 }
 
 .main-sub-div{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: calc(100vw/5);
+    width: calc(100vw/4);
 }
 
 .sub-div{
