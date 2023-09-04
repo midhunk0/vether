@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { Offcanvas, Button } from 'react-bootstrap';
-
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const WeatherApp = () => {
-    const [city, setCity] = useState("malappuram");
+    const [city, setCity] = useState("trivandrum");
     const [tempUnit, setTempUnit] = useState("°C");
     const [speedUnit, setSpeedUnit] = useState("kph");
     const [pressureUnit, setPressureUnit] = useState("mb");
@@ -16,10 +14,6 @@ const WeatherApp = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
-    const [showMenu, setShowMenu] = useState(false);
-    
-    const handleClose = () => setShowMenu(false);
-    const handleShow = () => setShowMenu(true);
 
     const setUnit = (unitOptions, selectedUnit, setUnitCallback) => (
         unitOptions.map(unit => (
