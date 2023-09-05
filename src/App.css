@@ -15,8 +15,7 @@ maps -- temperature, clouds, ...
 .topbar{
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    gap: 30px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 

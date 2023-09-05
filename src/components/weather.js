@@ -14,13 +14,14 @@ const WeatherApp = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
+    const [open, setOpen] = useState(false);
 
     const setUnit = (unitOptions, selectedUnit, setUnitCallback) => (
         unitOptions.map(unit => (
             <button
                 key={unit}
                 onClick={() => setUnitCallback(unit)}
-                style={{ background: selectedUnit === unit ? "red" : "white", marginLeft:"10px", border:"1px solid black", borderRadius:"4px", padding:"10px"}}
+                style={{ background: selectedUnit === unit ? "red" : "white", color: selectedUnit === unit ? "white" : "black", marginLeft:"10px", border:"1px solid black", borderRadius:"4px", padding:"10px"}}
             >
                 {unit}
             </button>
@@ -52,18 +53,25 @@ const WeatherApp = () => {
         }
     }
 
-
+    const openUnits=()=>{
+        setOpen(!open)
+    }
 
     return (
         <div>
             <h1>Weather App</h1>
+            <div style={{display:"flex", justifyContent:"space-between"}}>
             <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)}/>
-            <div className="topbar">
-                <div>Temperature:{setUnit(["°C", "°F"], tempUnit, setTempUnit)}</div>
-                <div>Speed:{setUnit(["kph", "mph"], speedUnit, setSpeedUnit)}</div>
-                <div>Pressure:{setUnit(["mb", "in"], pressureUnit, setPressureUnit)}</div>
-                <div>Precipitation:{setUnit(["mm", "in"], precipitationUnit, setPrecipitationUnit)}</div>
-                <div>Distance:{setUnit(["km", "miles"], distanceUnit, setDistanceUnit)}</div>
+            {open &&
+                <div className="topbar">
+                    <div>Temperature:{setUnit(["°C", "°F"], tempUnit, setTempUnit)}</div>
+                    <div>Speed:{setUnit(["kph", "mph"], speedUnit, setSpeedUnit)}</div>
+                    <div>Pressure:{setUnit(["mb", "in"], pressureUnit, setPressureUnit)}</div>
+                    <div>Precipitation:{setUnit(["mm", "in"], precipitationUnit, setPrecipitationUnit)}</div>
+                    <div>Distance:{setUnit(["km", "miles"], distanceUnit, setDistanceUnit)}</div>
+                </div>
+            }
+            <button style={{ background: open === true ? "red" : "white", color: open === true ? "white" : "black", marginLeft:"10px", border:"1px solid black", borderRadius:"4px", padding:"10px", cursor:"pointer"}} onClick={openUnits}>{open===false ? "open units" : "close units"}</button>
             </div>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
