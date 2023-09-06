@@ -7,23 +7,134 @@ charts - -chance of precipitation, wind, humidity, uv, dew points, temperature
 maps -- temperature, clouds, ...
 
 */
+/* .weather-app {
+    padding: 20px;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .units-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  .units-button {
+    width: 100px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .units-button.open {
+    background: red;
+    color: white;
+  }
+  
+  .units-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
 
+ul {
+    list-style: none;
+} */
+
+.weather-app {
+    padding: 10px;
+  }
+  
+  .offcanvas-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-button {
+    width: 100px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .toggle-button.open {
+    background: red;
+    color: white;
+  }
+  
+  .offcanvas-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .offcanvas-menu.open {
+    transform: translateX(0);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 20px;
+  }
+  
+  /* Add media queries for responsiveness as needed */
+  
+li{
+    margin-top: 10px;
+}
+  
 .main-div{
     overflow-x: hidden;
 }
 
-.topbar{
+.topbar {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: right;
     gap: 10px;
     flex-wrap: wrap;
 }
 
 input{
     border: 1px solid black;
+    height: 20px;
     border-radius: 12px;
     padding: 10px;
-    width: 33.34vw;
 }
 
 .current-div{
