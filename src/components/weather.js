@@ -104,7 +104,7 @@ const WeatherApp = () => {
                             )
                         }
                     </div>
-                    <div className="div23">
+                    {/* <div className="div23"> */}
                         <div className="div2">
                             {speedUnit === "kph" 
                                 ? <p>Wind Speed: {data.current.wind_kph}kph</p>
@@ -133,7 +133,7 @@ const WeatherApp = () => {
                                 : <p>Gust Speed: {data.current.gust_mph}mph</p>
                             }
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
                 <h3>7 Day Forecast</h3>
                 {data && data.forecast && data.forecast.forecastday && (
