@@ -7,164 +7,131 @@ charts - -chance of precipitation, wind, humidity, uv, dew points, temperature
 maps -- temperature, clouds, ...
 
 */
-/* .weather-app {
-    padding: 20px;
-  }
-  
-  .search-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  input[type="text"] {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .units-container {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-  }
-  
-  .units-button {
-    width: 100px;
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .units-button.open {
-    background: red;
-    color: white;
-  }
-  
-  .units-list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
 
-ul {
-    list-style: none;
-} */
-
-.weather-app {
-    padding: 10px;
-  }
-  
-  .offcanvas-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .toggle-button {
-    width: 100px;
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .toggle-button.open {
-    background: red;
-    color: white;
-  }
-  
-  .offcanvas-menu {
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    background: #fff;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px;
-    overflow-y: auto;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .offcanvas-menu.open {
-    transform: translateX(0);
-  }
-  
-  ul {
-    list-style: none;
-    padding: 20px;
-  }
-  
-  /* Add media queries for responsiveness as needed */
-  
-li{
-    margin-top: 10px;
-}
-  
-.main-div{
+body{
     overflow-x: hidden;
 }
 
-.topbar {
+.unit-button{
+    width: 50%;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+}
+
+.weather-app{
+    padding: 20px;
+}
+
+.offcanvas-div{
     display: flex;
-    flex-direction: column;
-    align-items: right;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 input{
-    border: 1px solid black;
-    height: 20px;
-    border-radius: 12px;
     padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 
-.current-div{
+.open-button{
+    width: 100px;
+    background: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.close-button{
+    width: 210px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 20px 20px 0;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.offcanvas-menu{
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    background: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 530px;
+    width: 250px;
+    overflow-y: hidden;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.offcanvas-menu.open{
+    transform: translateX(0);
+}
+
+ul{
+    list-style: none;
+    padding: 20px;
+}
+
+.current{
     display: flex;
-    gap: 10px;
+    margin-top: 20px;
+    gap: 20px;
 }
 
-.mid-div{
+.div1{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 20px;
     border: 1px solid black;
     border-radius: 16px;
-    width: calc(100vw/4);
+    width: 60vw;
 }
 
-.main-sub-div{
+.div23{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: calc(100vw/4);
+    gap: 20px;
 }
 
-.sub-div{
+.div2{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 20px;
     border: 1px solid black;
     border-radius: 16px;
-    padding: 10px;
+    width: 20vw;
+}
+
+.div3{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 20vw;
+}
+
+@media (max-width: 1024px){
+    .current{
+        flex-direction: column;
+    }
+
+    .div1{
+        width: calc(100vw - 81px);
+    }
+
+    .div2{
+        width: calc(50vw);
+    }
+
+    .div3{
+        width: calc(50vw);
+    }
 }
