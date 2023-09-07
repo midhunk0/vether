@@ -104,36 +104,34 @@ const WeatherApp = () => {
                             )
                         }
                     </div>
-                    {/* <div className="div23"> */}
-                        <div className="div2">
-                            {speedUnit === "kph" 
-                                ? <p>Wind Speed: {data.current.wind_kph}kph</p>
-                                : <p>Wind Speed: {data.current.wind_mph}mph</p>
-                            }
-                            <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
-                            <p>Humidity: {data.current.humidity}</p>
-                            <p>Clouds: {data.current.cloud}</p>
-                            <p>UV: {data.current.uv}</p>
-                        </div>
-                        <div className="div3">
-                            {pressureUnit === "mb" 
-                                ? <p>Pressure: {data.current.pressure_mb}mb</p>
-                                : <p>Pressure: {data.current.pressure_in}in</p>
-                            }
-                            {precipitationUnit === "mm" 
-                                ? <p>Precipitation: {data.current.precip_mm}mm</p>
-                                : <p>Precipitation: {data.current.precip_in}in</p>
-                            }
-                            {distanceUnit === "km" 
-                                ? <p>Visual clarity: {data.current.vis_km}km</p> 
-                                : <p>Visual clarity: {data.current.vis_miles}miles</p>
-                            }
-                            {speedUnit === "kph" 
-                                ? <p>Gust Speed: {data.current.gust_kph}kph</p>
-                                : <p>Gust Speed: {data.current.gust_mph}mph</p>
-                            }
-                        </div>
-                    {/* </div> */}
+                    <div className="div2">
+                        {speedUnit === "kph" 
+                            ? <p>Wind Speed: {data.current.wind_kph}kph</p>
+                            : <p>Wind Speed: {data.current.wind_mph}mph</p>
+                        }
+                        <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
+                        <p>Humidity: {data.current.humidity}</p>
+                        <p>Clouds: {data.current.cloud}</p>
+                        <p>UV: {data.current.uv}</p>
+                    </div>
+                    <div className="div3">
+                        {pressureUnit === "mb" 
+                            ? <p>Pressure: {data.current.pressure_mb}mb</p>
+                            : <p>Pressure: {data.current.pressure_in}in</p>
+                        }
+                        {precipitationUnit === "mm" 
+                            ? <p>Precipitation: {data.current.precip_mm}mm</p>
+                            : <p>Precipitation: {data.current.precip_in}in</p>
+                        }
+                        {distanceUnit === "km" 
+                            ? <p>Visual clarity: {data.current.vis_km}km</p> 
+                            : <p>Visual clarity: {data.current.vis_miles}miles</p>
+                        }
+                        {speedUnit === "kph" 
+                            ? <p>Gust Speed: {data.current.gust_kph}kph</p>
+                            : <p>Gust Speed: {data.current.gust_mph}mph</p>
+                        }
+                    </div>
                 </div>
                 <h3>7 Day Forecast</h3>
                 {data && data.forecast && data.forecast.forecastday && (

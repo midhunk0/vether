@@ -122,6 +122,7 @@ ul{
 @media (max-width: 1024px){
     .current{
         flex-direction: column;
+        overflow-x: hidden;
     }
 
     .div1{
