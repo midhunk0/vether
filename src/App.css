@@ -60,15 +60,15 @@ input{
 }
 
 .offcanvas-menu{
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+    /* transition: transform 0.3s ease-in-out; */
     background: white;
     position: absolute;
     top: 0;
     right: 0;
-    height: 530px;
+    /* height: 530px; */
     width: 250px;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 

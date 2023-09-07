@@ -87,22 +87,24 @@ const WeatherApp = () => {
                 <div className="current">                            
                     <div className="div1">
                         <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
-                        <img src={data.current.condition.icon} alt="weather-img" style={{margin:"0 40px", width:"100px", height:"100px"}}/>
-                        <p>{data.current.condition.text}</p>
-                        {tempUnit === "°C" 
-                            ? (
-                                <>
-                                    <p>{data.current.temp_c}°C</p>
-                                    <p>Feels {data.current.feelslike_c}°C</p>
-                                </>
-                            ) 
-                            : (
-                                <>
-                                    <p>{data.current.temp_f}°F</p>
-                                    <p>Feels {data.current.feelslike_f}°F</p>
-                                </>
-                            )
-                        }
+                        <div style={{display:"flex", justifyContent:"space-around", gap:"10px"}}>
+                            <div style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
+                                <p style={{fontSize:"36px", fontWeight:"bold", margin:0, marginBottom:"10px"}}>{data.current.condition.text}</p>
+                                {tempUnit === "°C" 
+                                    ? (
+                                        <>
+                                            <p style={{fontSize:"42px", fontWeight:"bolder", margin:0}}>{data.current.temp_c}°C</p>
+                                        </>
+                                    ) 
+                                    : (
+                                        <>
+                                            <p style={{fontSize:"42px", fontWeight:"bolder", margin:0}}>{data.current.temp_f}°F</p>
+                                        </>
+                                    )
+                                }
+                            </div>
+                            <img src={data.current.condition.icon} alt="weather-img" style={{width:"140px", height:"140px"}}/>
+                        </div>
                     </div>
                     <div className="div2">
                         {speedUnit === "kph" 
@@ -131,6 +133,7 @@ const WeatherApp = () => {
                             ? <p>Gust Speed: {data.current.gust_kph}kph</p>
                             : <p>Gust Speed: {data.current.gust_mph}mph</p>
                         }
+                        <p>Lat: {data.location.lat}, Lat: {data.location.lon}</p>
                     </div>
                 </div>
                 <h3>7 Day Forecast</h3>
