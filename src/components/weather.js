@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
@@ -21,9 +20,11 @@ const WeatherApp = () => {
         unitOptions.map(unit => (
             <button
                 key={unit}
-                onClick={() => setUnitCallback(unit)}
-                className="unit-button"
-                style={{ background: selectedUnit === unit ? "#352F44" : "#FAF0E6", color: selectedUnit === unit ? "#FAF0E6" : "#352F44"}}
+                onClick={(e) =>{
+                    e.stopPropagation();
+                    setUnitCallback(unit)
+                }}
+                className={`unit-button ${selectedUnit === unit ? 'selected' : ''}`}
             >
                 {unit}
             </button>
@@ -67,14 +68,13 @@ const WeatherApp = () => {
     }
 
     return (
-    <div className="weather-app" style={{color: "#352F44", background:"#B9B4C7"}}>
-        <h1>Weather App</h1>
-        <div className="offcanvas-div">
-            <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)} style={{color:"#352F44", background:"#FAF0E6"}}/>
-            <button className="open-button" onClick={openUnits} style={{color:"#352F44", background:"#FAF0E6"}}>Open Units</button>
-            <div className={`offcanvas-menu ${open ? 'open' : ''}`} onClick={openUnits} style={{background:"#B9B4C7"}}>
-                <div className="offcanvas-content" onClick={(e) => e.stopPropagation()}>
-                    <button className="close-button" onClick={openUnits} style={{color:"#352F44", background:"#FAF0E6"}}>Close Units</button>
+        <div className="weather-app">
+            <h1>Weather App</h1>
+            <div className="topbar">
+                <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)}/>
+                <button className="open-button" onClick={openUnits}>Open Units</button>
+                <div className={`offcanvas-menu ${open ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
+                    <button className="close-button" onClick={openUnits}>Close Units</button>
                     <ul>
                         Temperature<li>{setUnit(['°C', '°F'], tempUnit, setTempUnit)}</li>
                         Speed<li>{setUnit(['kph', 'mph'], speedUnit, setSpeedUnit)}</li>
@@ -84,77 +84,76 @@ const WeatherApp = () => {
                     </ul>
                 </div>
             </div>
-        </div>
 
 
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        {data && (
-            <div>
-                <div className="current">                            
-                    <div className="div1" style={{background:"#FAF0E6"}}>
-                        <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
-                        <div style={{display:"flex", justifyContent:"space-around", gap:"10px"}}>
-                            <div style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
-                                <p style={{fontSize:"36px", fontWeight:"bold", margin:0, marginBottom:"10px"}}>{data.current.condition.text}</p>
-                                {tempUnit === "°C" 
-                                    ? (
-                                        <>
-                                            <p style={{fontSize:"42px", fontWeight:"bolder", margin:0}}>{data.current.temp_c}°C</p>
-                                            <p style={{fontSize:"16px"}}>Feels like {data.current.feelslike_c}°C</p>
-                                        </>
-                                    ) 
-                                    : (
-                                        <>
-                                            <p style={{fontSize:"42px", fontWeight:"bolder", margin:0}}>{data.current.temp_f}°F</p>
-                                            <p style={{fontSize:"16px"}}>Feels like {data.current.feelslike_f}°F</p>
-                                        </>
-                                    )
-                                }
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+            {data && data.forecast && data.forecast.forecastday &&(
+                <div>
+                    <div className="current-weather">                            
+                        <div className="current1">
+                            <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
+                            <div className="current11">
+                                <div className="current111">
+                                    <p className="current-condition">{data.current.condition.text}</p>
+                                    {tempUnit === "°C" 
+                                        ? (
+                                            <>
+                                                <p className="current-temp">{data.current.temp_c}°C</p>
+                                                <p className="current-feel">Feels like {data.current.feelslike_c}°C</p>
+                                            </>
+                                        ) 
+                                        : (
+                                            <>
+                                                <p className="current-temp">{data.current.temp_f}°F</p>
+                                                <p className="current-feel">Feels like {data.current.feelslike_f}°F</p>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                                <img src={data.current.condition.icon} alt="weather-img"/>
                             </div>
-                            <img src={data.current.condition.icon} alt="weather-img" style={{width:"140px", height:"140px"}}/>
+                        </div>
+                        <div className="current2">
+                            <div className="current21">
+                                {speedUnit === "kph" 
+                                    ? <p>Wind Speed: {data.current.wind_kph}kph</p>
+                                    : <p>Wind Speed: {data.current.wind_mph}mph</p>
+                                }
+                                <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
+                                <p>Humidity: {data.current.humidity}</p>
+                                <p>Clouds: {data.current.cloud}</p>
+                                <p>UV: {data.current.uv}</p>
+                            </div>
+                            <div className="current22">
+                                {pressureUnit === "mb" 
+                                    ? <p>Pressure: {data.current.pressure_mb}mb</p>
+                                    : <p>Pressure: {data.current.pressure_in}in</p>
+                                }
+                                {precipitationUnit === "mm" 
+                                    ? <p>Precipitation: {data.current.precip_mm}mm</p>
+                                    : <p>Precipitation: {data.current.precip_in}in</p>
+                                }
+                                {distanceUnit === "km" 
+                                    ? <p>Visual clarity: {data.current.vis_km}km</p> 
+                                    : <p>Visual clarity: {data.current.vis_miles}miles</p>
+                                }
+                                {speedUnit === "kph" 
+                                    ? <p>Gust Speed: {data.current.gust_kph}kph</p>
+                                    : <p>Gust Speed: {data.current.gust_mph}mph</p>
+                                }
+                                <p>Lat: {data.location.lat}, Lat: {data.location.lon}</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="div23">
-                    <div className="div2" style={{background:"#FAF0E6"}}>
-                        {speedUnit === "kph" 
-                            ? <p>Wind Speed: {data.current.wind_kph}kph</p>
-                            : <p>Wind Speed: {data.current.wind_mph}mph</p>
-                        }
-                        <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
-                        <p>Humidity: {data.current.humidity}</p>
-                        <p>Clouds: {data.current.cloud}</p>
-                        <p>UV: {data.current.uv}</p>
-                    </div>
-                    <div className="div3" style={{background:"#FAF0E6"}}>
-                        {pressureUnit === "mb" 
-                            ? <p>Pressure: {data.current.pressure_mb}mb</p>
-                            : <p>Pressure: {data.current.pressure_in}in</p>
-                        }
-                        {precipitationUnit === "mm" 
-                            ? <p>Precipitation: {data.current.precip_mm}mm</p>
-                            : <p>Precipitation: {data.current.precip_in}in</p>
-                        }
-                        {distanceUnit === "km" 
-                            ? <p>Visual clarity: {data.current.vis_km}km</p> 
-                            : <p>Visual clarity: {data.current.vis_miles}miles</p>
-                        }
-                        {speedUnit === "kph" 
-                            ? <p>Gust Speed: {data.current.gust_kph}kph</p>
-                            : <p>Gust Speed: {data.current.gust_mph}mph</p>
-                        }
-                        <p>Lat: {data.location.lat}, Lat: {data.location.lon}</p>
-                    </div>
-                    </div>
-                </div>
-                <h3>7 Day Forecast</h3>
-                {data && data.forecast && data.forecast.forecastday && (
-                    <div style={{display:"flex", overflowX:"auto", gap:"20px"}}>
+
+                    <h3>7 Day Forecast</h3>
+                    <div className="day">
                         {data.forecast.forecastday.slice(0, 7).map((day, index) => (
-                        <div key={index} style={{display:"flex",flexDirection:"column", alignItems:"center", justifyContent:"center",gap:"10px",background: "#FAF0E6", border:"none", borderRadius:"16px", padding:"10px", minWidth:"300px"}}>
+                        <div key={index} className="one-day">
                             <p>{day.date}</p>
                             <p>{day.day.condition.text}</p>
-                            <img src={day.day.condition.icon} alt={day.day.condition.text} />
+                            <img src={day.day.condition.icon} alt={day.day.condition.text}/>
                             {tempUnit === "°C" 
                                 ? (
                                     <>
@@ -195,12 +194,12 @@ const WeatherApp = () => {
                         </div>
                         ))}
                     </div>
-                )}
-                <h3>Hourly Forecast</h3>
-                {data && data.forecast && data.forecast.forecastday && (
-                    <div style={{display:"flex", overflowX:"auto", gap:"20px"}}>
+
+
+                    <h3>Hourly Forecast</h3>
+                    <div className="hour">
                         {data.forecast.forecastday[0].hour.map((hour, index) => (
-                            <div key={index} style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",gap:"10px",background: "#FAF0E6", border: "none", borderRadius:"16px", padding:"10px", minWidth:"300px"}}>
+                            <div key={index} className="one-hour">
                                 <p>Time: {hour.time.split(' ')[1]}</p>
                                 <p>{hour.condition.text}</p>
                                 <img src={hour.condition.icon} alt={hour.condition.text}/>
@@ -220,7 +219,7 @@ const WeatherApp = () => {
                                             {/* <p>Feels Like: {hour.feelslike_f}°F</p>
                                             <p>Wind Chill: {hour.windchill_f}°F</p>
                                             <p>Heat Index: {hour.heatindex_f}°F</p>
-                                            <p>Dew Point: {hour.dewpoint_f}°F</p>                                                 */}
+                                            <p>Dew Point: {hour.dewpoint_f}°F</p> */}
                                         </>
                                     )
                                 }
@@ -254,13 +253,11 @@ const WeatherApp = () => {
                             </div>
                         ))}
                     </div>
-                )}
-            </div>
-
-                )}
-            </div>
-            );
-        };
+                </div>
+            )}
+        </div>
+    );
+};
 
 export default WeatherApp;
 
