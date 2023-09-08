@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const WeatherApp = () => {
-    const [city, setCity] = useState("malappuram");
+    const [city, setCity] = useState(localStorage.getItem("selectedCity") || "malappuram");
     const [tempUnit, setTempUnit] = useState("°C");
     const [speedUnit, setSpeedUnit] = useState("kph");
     const [pressureUnit, setPressureUnit] = useState("mb");
@@ -32,28 +32,35 @@ const WeatherApp = () => {
 
     useEffect(() => {
         if (city) {
-            fetchForecast();
+            const fetchData = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7`);
+                    const weatherData = await res.json();
+                    if (res.ok) {
+                        setData(weatherData);
+                        console.log(weatherData);
+                    } 
+                    else {
+                        setError("An error occurred while fetching the forecast data");
+                    }
+                } 
+                catch (error) {
+                    setError("An error occurred while fetching the forecast data");
+                } 
+                finally {
+                    setLoading(false);
+                }
+            };
+        
+            fetchData();
         }
-    },[city]);
-
-    const fetchForecast = async () => {
-        setLoading(true);
-        setError(null)
-        try{
-            const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7`);
-            const weatherData = await res.json();
-            if(res.ok){
-                setData(weatherData);
-                console.log(weatherData);
-            }
-        }
-        catch(error){
-            setError("An error occured while fetching the forecast data");
-        }
-        finally{
-            setLoading(false);
-        }
-    }
+    }, [city]);
+      
+    useEffect(() => {
+        localStorage.setItem("selectedCity", city);
+    },[city]);      
 
     const openUnits=()=>{
         setOpen(!open) 
@@ -106,6 +113,7 @@ const WeatherApp = () => {
                             <img src={data.current.condition.icon} alt="weather-img" style={{width:"140px", height:"140px"}}/>
                         </div>
                     </div>
+                    <div className="div23">
                     <div className="div2">
                         {speedUnit === "kph" 
                             ? <p>Wind Speed: {data.current.wind_kph}kph</p>
@@ -134,6 +142,7 @@ const WeatherApp = () => {
                             : <p>Gust Speed: {data.current.gust_mph}mph</p>
                         }
                         <p>Lat: {data.location.lat}, Lat: {data.location.lon}</p>
+                    </div>
                     </div>
                 </div>
                 <h3>7 Day Forecast</h3>
