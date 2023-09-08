@@ -67,7 +67,7 @@ const WeatherApp = () => {
     }
 
     return (
-    <div className="weather-app" style={{color: data.current.is_day === 1 ? "#352F44" : "#B9B4C7", background:"#B9B4C7"}}>
+    <div className="weather-app" style={{color: "#352F44", background:"#B9B4C7"}}>
         <h1>Weather App</h1>
         <div className="offcanvas-div">
             <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)} style={{color:"#352F44", background:"#FAF0E6"}}/>
