@@ -23,7 +23,7 @@ const WeatherApp = () => {
                 key={unit}
                 onClick={() => setUnitCallback(unit)}
                 className="unit-button"
-                style={{ background: selectedUnit === unit ? "red" : "white", color: selectedUnit === unit ? "white" : "black"}}
+                style={{ background: selectedUnit === unit ? "#352F44" : "#FAF0E6", color: selectedUnit === unit ? "#FAF0E6" : "#352F44"}}
             >
                 {unit}
             </button>
@@ -101,11 +101,13 @@ const WeatherApp = () => {
                                     ? (
                                         <>
                                             <p style={{fontSize:"42px", fontWeight:"bolder", margin:0}}>{data.current.temp_c}°C</p>
+                                            <p style={{fontSize:"16px"}}>Feels like {data.current.feelslike_c}°C</p>
                                         </>
                                     ) 
                                     : (
                                         <>
                                             <p style={{fontSize:"42px", fontWeight:"bolder", margin:0}}>{data.current.temp_f}°F</p>
+                                            <p style={{fontSize:"16px"}}>Feels like {data.current.feelslike_f}°F</p>
                                         </>
                                     )
                                 }
@@ -149,7 +151,7 @@ const WeatherApp = () => {
                 {data && data.forecast && data.forecast.forecastday && (
                     <div style={{display:"flex", overflowX:"auto", gap:"20px"}}>
                         {data.forecast.forecastday.slice(0, 7).map((day, index) => (
-                        <div key={index} style={{display:"flex",flexDirection:"column", alignItems:"center", justifyContent:"center",gap:"10px", border:"1px solid black", borderRadius:"16px", padding:"10px", minWidth:"300px"}}>
+                        <div key={index} style={{display:"flex",flexDirection:"column", alignItems:"center", justifyContent:"center",gap:"10px",background: "#FAF0E6", border:"none", borderRadius:"16px", padding:"10px", minWidth:"300px"}}>
                             <p>{day.date}</p>
                             <p>{day.day.condition.text}</p>
                             <img src={day.day.condition.icon} alt={day.day.condition.text} />
@@ -198,7 +200,7 @@ const WeatherApp = () => {
                 {data && data.forecast && data.forecast.forecastday && (
                     <div style={{display:"flex", overflowX:"auto", gap:"20px"}}>
                         {data.forecast.forecastday[0].hour.map((hour, index) => (
-                            <div key={index} style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",gap:"10px", border:"1px solid black", borderRadius:"16px", padding:"10px", minWidth:"300px"}}>
+                            <div key={index} style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",gap:"10px",background: "#FAF0E6", border: "none", borderRadius:"16px", padding:"10px", minWidth:"300px"}}>
                                 <p>Time: {hour.time.split(' ')[1]}</p>
                                 <p>{hour.condition.text}</p>
                                 <img src={hour.condition.icon} alt={hour.condition.text}/>

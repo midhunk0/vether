@@ -22,6 +22,8 @@ body{
 
 .weather-app{
     padding: 20px;
+    color: #352F44;
+    background: #B9B4C7;
 }
 
 .offcanvas-div{
@@ -32,15 +34,17 @@ body{
 
 input{
     padding: 10px;
-    border: 1px solid black;
+    border: none;
+    color: #352F44;
     border-radius: 8px;
+    background: #FAF0E6;
 }
 
 .open-button{
     width: 100px;
-    background: white;
-    color: black;
-    border: 1px solid black;
+    background: #FAF0E6;
+    color: #352F44;
+    border: none;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
@@ -49,8 +53,8 @@ input{
 
 .close-button{
     width: 210px;
-    background: red;
-    color: white;
+    background: #352F44;
+    color: #FAF0E6;
     border: none;
     border-radius: 8px;
     margin: 20px 20px 0;
@@ -61,14 +65,11 @@ input{
 
 .offcanvas-menu{
     transform: translateY(-100%);
-    /* transition: transform 0.3s ease-in-out; */
-    background: white;
+    background: #B9B4C7;
     position: absolute;
     top: 0;
     right: 0;
-    /* height: 530px; */
     width: 250px;
-    /* overflow-y: hidden; */
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -91,9 +92,10 @@ ul{
     display: flex;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid black;
+    border: none;
     border-radius: 16px;
     width: 60vw;
+    background: #FAF0E6;
 }
 
 .div23{
@@ -105,18 +107,20 @@ ul{
     display: flex;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid black;
+    border: none;
     border-radius: 16px;
     width: 20vw;
+    background: #FAF0E6;
 }
 
 .div3{
     display: flex;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid black;
+    border: none;
     border-radius: 16px;
     width: 20vw;
+    background: #FAF0E6;
 }
 
 @media (max-width: 1024px){
@@ -138,23 +142,23 @@ ul{
 }
 
 @media (max-width: 700px){
-    .current{
+    /* .current{
         flex-direction: column;
-    }
+    } */
 
-    .div1{
+    /* .div1{
         width: calc(100vw - 81px);
-    }
+    } */
 
     .div23{
         flex-direction: column;
     }
 
-    .div2{
+    /* .div2{
         width: calc(100vw - 81px);
     }
 
     .div3{
         width: calc(100vw - 81px);
-    }
+    } */
 }
