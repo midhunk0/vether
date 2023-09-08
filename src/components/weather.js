@@ -67,14 +67,14 @@ const WeatherApp = () => {
     }
 
     return (
-    <div className="weather-app">
+    <div className="weather-app" style={{color: data.current.is_day === 1 ? "#352F44" : "#B9B4C7", background:"#B9B4C7"}}>
         <h1>Weather App</h1>
         <div className="offcanvas-div">
-            <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)} />
-            <button className="open-button" onClick={openUnits} >Open Units</button>
-            <div className={`offcanvas-menu ${open ? 'open' : ''}`} onClick={openUnits} >
+            <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)} style={{color:"#352F44", background:"#FAF0E6"}}/>
+            <button className="open-button" onClick={openUnits} style={{color:"#352F44", background:"#FAF0E6"}}>Open Units</button>
+            <div className={`offcanvas-menu ${open ? 'open' : ''}`} onClick={openUnits} style={{background:"#B9B4C7"}}>
                 <div className="offcanvas-content" onClick={(e) => e.stopPropagation()}>
-                    <button className="close-button" onClick={openUnits}>Close Units</button>
+                    <button className="close-button" onClick={openUnits} style={{color:"#352F44", background:"#FAF0E6"}}>Close Units</button>
                     <ul>
                         Temperature<li>{setUnit(['°C', '°F'], tempUnit, setTempUnit)}</li>
                         Speed<li>{setUnit(['kph', 'mph'], speedUnit, setSpeedUnit)}</li>
@@ -92,7 +92,7 @@ const WeatherApp = () => {
         {data && (
             <div>
                 <div className="current">                            
-                    <div className="div1">
+                    <div className="div1" style={{background:"#FAF0E6"}}>
                         <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
                         <div style={{display:"flex", justifyContent:"space-around", gap:"10px"}}>
                             <div style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
@@ -116,7 +116,7 @@ const WeatherApp = () => {
                         </div>
                     </div>
                     <div className="div23">
-                    <div className="div2">
+                    <div className="div2" style={{background:"#FAF0E6"}}>
                         {speedUnit === "kph" 
                             ? <p>Wind Speed: {data.current.wind_kph}kph</p>
                             : <p>Wind Speed: {data.current.wind_mph}mph</p>
@@ -126,7 +126,7 @@ const WeatherApp = () => {
                         <p>Clouds: {data.current.cloud}</p>
                         <p>UV: {data.current.uv}</p>
                     </div>
-                    <div className="div3">
+                    <div className="div3" style={{background:"#FAF0E6"}}>
                         {pressureUnit === "mb" 
                             ? <p>Pressure: {data.current.pressure_mb}mb</p>
                             : <p>Pressure: {data.current.pressure_in}in</p>
