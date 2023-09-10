@@ -6,11 +6,11 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 const WeatherApp = () => {
     const [city, setCity] = useState(localStorage.getItem("selectedCity") || "malappuram");
-    const [tempUnit, setTempUnit] = useState("°C");
-    const [speedUnit, setSpeedUnit] = useState("kph");
-    const [pressureUnit, setPressureUnit] = useState("mb");
-    const [precipitationUnit, setPrecipitationUnit] =useState("mm");
-    const [distanceUnit, setDistanceUnit] = useState("km");
+    const [tempUnit, setTempUnit] = useState(localStorage.getItem("selectedTemp") || "°C");
+    const [speedUnit, setSpeedUnit] = useState(localStorage.getItem("selectedSpeed") || "kph");
+    const [pressureUnit, setPressureUnit] = useState(localStorage.getItem("selectedPressure") || "mb");
+    const [precipitationUnit, setPrecipitationUnit] = useState(localStorage.getItem("selectedPrecip") || "mm");
+    const [distanceUnit, setDistanceUnit] = useState(localStorage.getItem("selectedDist") || "km");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
@@ -61,7 +61,12 @@ const WeatherApp = () => {
       
     useEffect(() => {
         localStorage.setItem("selectedCity", city);
-    },[city]);      
+        localStorage.setItem("selectedTemp", tempUnit);
+        localStorage.setItem("selectedSpeed", speedUnit);
+        localStorage.setItem("selectedPressure", pressureUnit);
+        localStorage.setItem("selectedPrecip", precipitationUnit);
+        localStorage.setItem("selectedDist", distanceUnit);
+    },[city, tempUnit, speedUnit, pressureUnit, precipitationUnit, distanceUnit]);      
 
     const openUnits=()=>{
         setOpen(!open) 
