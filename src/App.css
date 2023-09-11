@@ -18,6 +18,15 @@ body{
     overflow-x: hidden;
 }
 
+.day-forecast, .hour-forecast{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #E7F6F2;
+    color: #E7F6F2;
+}
+
 input{
     padding: 10px;
     background: #395B64;
@@ -30,7 +39,7 @@ input::placeholder{
     color: #A5C9CA;
 }
 
-.open-button{
+.open-button, .more-button, .less-button{
     width: 100px;
     padding: 10px;
     background: #395B64;
@@ -39,6 +48,13 @@ input::placeholder{
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+}
+
+.more-button, .less-button{
+    background: #2C3333;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
 }
 
 .close-button{
@@ -142,8 +158,9 @@ h1, h3{
     font-weight: bolder;
 }
 
-.current-feel{
-    font-size: 16px;
+.normal-text{
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .current11 img{
@@ -201,3 +218,31 @@ h1, h3{
     border-radius: 16px;
 }
 
+.normal-div{
+    display: flex;
+    flex-direction: column;
+    background: #395B64;
+    color: #E7F6F2;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.full-div{
+    display: flex;
+    gap: 20px;
+    @media (max-width: 700px){
+        flex-direction: column;
+    }
+}
+
+.half-div{
+    display: flex;
+    flex-direction: column;
+    background: #395B64;
+    width: 50vw;
+    padding: 20px;
+    border-radius: 16px;
+    @media (max-width: 700px){
+        width: calc(100vw - 81px);
+    }
+}

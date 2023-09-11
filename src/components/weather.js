@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY;
+let datas=null;
 
-const WeatherApp = () => {
+const Weather = () => {
     const [city, setCity] = useState(localStorage.getItem("selectedCity") || "malappuram");
     const [tempUnit, setTempUnit] = useState(localStorage.getItem("selectedTemp") || "°C");
     const [speedUnit, setSpeedUnit] = useState(localStorage.getItem("selectedSpeed") || "kph");
@@ -41,6 +43,7 @@ const WeatherApp = () => {
                     const weatherData = await res.json();
                     if (res.ok) {
                         setData(weatherData);
+                        datas=weatherData;
                         console.log(weatherData);
                     } 
                     else {
@@ -56,9 +59,10 @@ const WeatherApp = () => {
             };
         
             fetchData();
+            
         }
     }, [city]);
-      
+     
     useEffect(() => {
         localStorage.setItem("selectedCity", city);
         localStorage.setItem("selectedTemp", tempUnit);
@@ -71,6 +75,8 @@ const WeatherApp = () => {
     const openUnits=()=>{
         setOpen(!open) 
     }
+
+    const navigate = useNavigate()
 
     return (
         <div className="weather-app">
@@ -105,13 +111,13 @@ const WeatherApp = () => {
                                         ? (
                                             <>
                                                 <p className="current-temp">{data.current.temp_c}°C</p>
-                                                <p className="current-feel">Feels like {data.current.feelslike_c}°C</p>
+                                                <p className="normal-text">Feels like {data.current.feelslike_c}°C</p>
                                             </>
                                         ) 
                                         : (
                                             <>
                                                 <p className="current-temp">{data.current.temp_f}°F</p>
-                                                <p className="current-feel">Feels like {data.current.feelslike_f}°F</p>
+                                                <p className="normal-text">Feels like {data.current.feelslike_f}°F</p>
                                             </>
                                         )
                                     }
@@ -122,32 +128,32 @@ const WeatherApp = () => {
                         <div className="current2">
                             <div className="current21">
                                 {speedUnit === "kph" 
-                                    ? <p>Wind Speed: {data.current.wind_kph}kph</p>
-                                    : <p>Wind Speed: {data.current.wind_mph}mph</p>
+                                    ? <p className="normal-text">Wind Speed: {data.current.wind_kph}kph</p>
+                                    : <p className="normal-text">Wind Speed: {data.current.wind_mph}mph</p>
                                 }
-                                <p>Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
-                                <p>Humidity: {data.current.humidity}</p>
-                                <p>Clouds: {data.current.cloud}</p>
-                                <p>UV: {data.current.uv}</p>
+                                <p className="normal-text">Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
+                                <p className="normal-text">Humidity: {data.current.humidity}</p>
+                                <p className="normal-text">Clouds: {data.current.cloud}</p>
+                                <p className="normal-text">UV: {data.current.uv}</p>
                             </div>
                             <div className="current22">
                                 {pressureUnit === "mb" 
-                                    ? <p>Pressure: {data.current.pressure_mb}mb</p>
-                                    : <p>Pressure: {data.current.pressure_in}in</p>
+                                    ? <p className="normal-text">Pressure: {data.current.pressure_mb}mb</p>
+                                    : <p className="normal-text">Pressure: {data.current.pressure_in}in</p>
                                 }
                                 {precipitationUnit === "mm" 
-                                    ? <p>Precipitation: {data.current.precip_mm}mm</p>
-                                    : <p>Precipitation: {data.current.precip_in}in</p>
+                                    ? <p className="normal-text">Precipitation: {data.current.precip_mm}mm</p>
+                                    : <p className="normal-text">Precipitation: {data.current.precip_in}in</p>
                                 }
                                 {distanceUnit === "km" 
-                                    ? <p>Visual clarity: {data.current.vis_km}km</p> 
-                                    : <p>Visual clarity: {data.current.vis_miles}miles</p>
+                                    ? <p className="normal-text">Visual clarity: {data.current.vis_km}km</p> 
+                                    : <p className="normal-text">Visual clarity: {data.current.vis_miles}miles</p>
                                 }
                                 {speedUnit === "kph" 
-                                    ? <p>Gust Speed: {data.current.gust_kph}kph</p>
-                                    : <p>Gust Speed: {data.current.gust_mph}mph</p>
+                                    ? <p className="normal-text">Gust Speed: {data.current.gust_kph}kph</p>
+                                    : <p className="normal-text">Gust Speed: {data.current.gust_mph}mph</p>
                                 }
-                                <p>Lat: {data.location.lat}, Lat: {data.location.lon}</p>
+                                <p className="normal-text">Lat: {data.location.lat}, Lat: {data.location.lon}</p>
                             </div>
                         </div>
                     </div>
@@ -156,46 +162,14 @@ const WeatherApp = () => {
                     <div className="day">
                         {data.forecast.forecastday.slice(0, 7).map((day, index) => (
                         <div key={index} className="one-day">
-                            <p>{day.date}</p>
-                            <p>{day.day.condition.text}</p>
+                            <p className="normal-text">{day.date}</p>
+                            <p className="normal-text">{day.day.condition.text}</p>
                             <img src={day.day.condition.icon} alt={day.day.condition.text}/>
                             {tempUnit === "°C" 
-                                ? (
-                                    <>
-                                        {/* <p>Maximum Temperature: {day.day.maxtemp_c}°C</p>
-                                        <p>Minimum Temperature: {day.day.mintemp_c}°C</p> */}
-                                        <p>Average Temperature: {day.day.avgtemp_c}°C</p>
-                                    </>
-                                ) 
-                                : (
-                                    <>
-                                        {/* <p>Maximum Temperature: {day.day.maxtemp_f}°F</p>
-                                        <p>Minimum Temperature: {day.day.mintemp_f}°F</p> */}
-                                        <p>Average Temperature: {day.day.avgtemp_f}°F</p>
-                                    </>
-                                )
+                                ? <p className="normal-text">Average Temperature: {day.day.avgtemp_c}°C</p>
+                                : <p className="normal-text">Average Temperature: {day.day.avgtemp_f}°F</p>
                             }
-                            {/* {speedUnit === "kph" 
-                                ? <p>Maximum Wind Speed: {day.day.maxwind_kph}kph</p>
-                                : <p>Maximum Wind Speed: {day.day.maxwind_mph}mph</p>
-                            }
-                            {precipitationUnit === "mm" 
-                                ? <p>Total Precipitation: {day.day.totalprecip_mm}mm</p>
-                                : <p>Total Precipitation: {day.day.totalprecip_in}in</p>
-                            }
-                            <p>Total Snow: {day.day.totalsnow_cm}cm</p>
-                            {distanceUnit === "km" 
-                                ? <p>Average Visual Clarity: {day.day.avgvis_km}km</p>
-                                : <p>Average Visual Clarity: {day.day.avgvis_miles}miles</p>
-                            }
-                            <p>Average Humidity: {day.day.avghumidity}</p>
-                            <p>Chance of rain: {day.day.daily_chance_of_rain}</p>
-                            <p>Chance of snow: {day.day.daily_chance_of_snow}</p>
-                            <p>UV: {day.day.uv}</p>
-                            <p>Sunrise and Sunset: {day.astro.sunrise} and {day.astro.sunset}</p>
-                            <p>Moonrise and Moonset: {day.astro.sunrise} and {day.astro.sunset}</p>
-                            <p>Moon Phase: {day.astro.moon_phase}</p>
-                            <p>Moon Illumination: {day.astro.moon_illumination}</p> */}
+                            <button className="more-button" onClick={()=>navigate("/day", { state: { selectedDay: day, data } })}>Show More</button>
                         </div>
                         ))}
                     </div>
@@ -205,56 +179,14 @@ const WeatherApp = () => {
                     <div className="hour">
                         {data.forecast.forecastday[0].hour.map((hour, index) => (
                             <div key={index} className="one-hour">
-                                <p>Time: {hour.time.split(' ')[1]}</p>
-                                <p>{hour.condition.text}</p>
+                                <p className="normal-text">Time: {hour.time.split(' ')[1]}</p>
+                                <p className="normal-text">{hour.condition.text}</p>
                                 <img src={hour.condition.icon} alt={hour.condition.text}/>
                                 {tempUnit === "°C" 
-                                    ? (
-                                        <>
-                                            <p>Temperature: {hour.temp_c}°C</p>
-                                            {/* <p>Feels Like: {hour.feelslike_c}°C</p>
-                                            <p>Wind Chill: {hour.windchill_c}°C</p>
-                                            <p>Heat Index: {hour.heatindex_c}°C</p>
-                                            <p>Dew Point: {hour.dewpoint_c}°C</p> */}
-                                        </>
-                                    ) 
-                                    : (
-                                        <>
-                                            <p>Temperature: {hour.temp_f}°F</p>
-                                            {/* <p>Feels Like: {hour.feelslike_f}°F</p>
-                                            <p>Wind Chill: {hour.windchill_f}°F</p>
-                                            <p>Heat Index: {hour.heatindex_f}°F</p>
-                                            <p>Dew Point: {hour.dewpoint_f}°F</p> */}
-                                        </>
-                                    )
+                                    ? <p className="normal-text">Temperature: {hour.temp_c}°C</p>
+                                    : <p className="normal-text">Temperature: {hour.temp_f}°F</p>
                                 }
-                                {/* {speedUnit === "kph" 
-                                    ? <p>Wind Speed: {hour.wind_kph}kph</p>
-                                    : <p>Wind Speed: {hour.wind_mph}mph</p>
-                                }
-                                <p>Wind Degree: {hour.wind_degree}</p>
-                                <p>Wind Direction: {hour.wind_dir}</p>
-                                {pressureUnit === "mb" 
-                                    ? <p>Pressure: {hour.pressure_mb}mb</p>
-                                    : <p>Pressure: {hour.pressure_in}in</p>
-                                }
-                                {precipitationUnit === "mm" 
-                                    ? <p>Precipitation: {hour.precip_mm}mm</p>
-                                    : <p>Precipitation: {hour.precip_in}in</p>
-                                }
-                                <p>Humidity: {hour.humidity}</p>
-                                <p>Clouds: {hour.cloud}</p>
-                                <p>Chance of rain: {hour.chance_of_rain}</p>
-                                <p>Chance of snow: {hour.chance_of_snow}</p>
-                                {distanceUnit === "km" 
-                                    ? <p>Visual Clarity: {hour.vis_km}km</p>
-                                    : <p>Visual Clarity: {hour.vis_miles}miles</p>
-                                }
-                                {speedUnit === "kph" 
-                                    ? <p>Gust Speed: {hour.gust_kph}kph</p>
-                                    : <p>Gust Speed: {hour.gust_mph}mph</p>
-                                }
-                                <p>UV: {hour.uv}</p> */}
+                                <button className="more-button" onClick={()=>navigate("/hour", {state: {selectedHour: hour, data}})}>Show More</button>
                             </div>
                         ))}
                     </div>
@@ -263,7 +195,6 @@ const WeatherApp = () => {
         </div>
     );
 };
-
-export default WeatherApp;
+export { Weather, datas };
 
 
