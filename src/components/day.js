@@ -1,16 +1,23 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Day({tempUnit, speedUnit, pressureUnit, precipitationUnit, distanceUnit}){
+export default function Day(){
     const navigate = useNavigate();
     const location = useLocation();
     const day = location.state.selectedDay;
-    // #E7F6F2-light  #2C3333-dark  #395B64-green
+    const {
+        tempUnit,
+        speedUnit,
+        pressureUnit,
+        precipitationUnit,
+        distanceUnit,
+    } = location.state;
+
     return(
         <div className="day-forecast">
-            <h1>Forecast</h1>
+            <h1>Daily Forecast</h1>
             <div className="topbar">
-                <button className="less-button" onClick={()=>navigate("/")}>Show Less</button>
                 <button className="less-button" onClick={()=>navigate("/")}>Show Less</button>
             </div>
             <div className="current-weather">
@@ -70,3 +77,6 @@ export default function Day({tempUnit, speedUnit, pressureUnit, precipitationUni
         </div>
     )
 }
+
+
+

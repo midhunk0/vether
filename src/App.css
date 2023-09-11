@@ -57,6 +57,16 @@ input::placeholder{
     text-align: center;
 }
 
+.more-button{
+    box-shadow: 0px 0px 25px #2C3333;
+    transition: transform 0.5s ease-in-out;
+}
+
+.more-button:hover {
+    box-shadow: 0px 0px 35px #2C3333;
+    transform: scale(1.2);
+}
+
 .close-button{
     width: 210px;
     margin: 20px 20px 0;

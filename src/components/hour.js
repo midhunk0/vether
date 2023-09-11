@@ -1,20 +1,28 @@
+
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Hour({tempUnit, speedUnit, pressureUnit, precipitationUnit, distanceUnit}){
+export default function Hour(){
     const navigate = useNavigate();
     const location = useLocation();
     const hour = location.state.selectedHour;
+    const {
+        tempUnit,
+        speedUnit,
+        pressureUnit,
+        precipitationUnit,
+        distanceUnit,
+    } = location.state;
+
     return(
         <div className="hour-forecast">
-            <h1>Forecast</h1>
+            <h1>Hourly Forecast</h1>
             <div className="topbar">
-                <button className="less-button" onClick={()=>navigate("/")}>Show Less</button>
                 <button className="less-button" onClick={()=>navigate("/")}>Show Less</button>
             </div>
             <div className="current-weather">
                 <div className="current1">
-                    <h2>Details on {hour.time.split(' '[1])}</h2>
+                    <h2>Details on {hour.time.split()}</h2>
                     <div className="current11">
                         <div className="current111">
                             <p className="current-condition">{hour.condition.text}</p>
@@ -96,3 +104,5 @@ export default function Hour({tempUnit, speedUnit, pressureUnit, precipitationUn
         </div>
     )
 }
+
+

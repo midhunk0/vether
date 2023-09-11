@@ -1,33 +1,17 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Weather } from "./components/weather";
+import Weather from "./components/weather";
 import Day from "./components/day";
 import Hour from "./components/hour";
 
-function App({tempUnit, speedUnit, pressureUnit, precipitationUnit, distanceUnit}) {
+function App() {
     return (
         <div>
             <Routes>
                 <Route path="/" element={<Weather/>}/>
-                <Route path="/day" element={
-                    <Day 
-                        tempUnit={tempUnit}
-                        speedUnit={speedUnit}
-                        pressureUnit={pressureUnit}
-                        precipitationUnit={precipitationUnit}
-                        distanceUnit={distanceUnit}
-                    />
-                }/>
-                <Route path="/hour" element={
-                    <Hour
-                        tempUnit={tempUnit}
-                        speedUnit={speedUnit}
-                        pressureUnit={pressureUnit}
-                        precipitationUnit={precipitationUnit}
-                        distanceUnit={distanceUnit}
-                    />}
-                />
+                <Route path="/day" element={<Day/>}/>
+                <Route path="/hour" element={<Hour/>}/>
             </Routes>
         </div>
     );

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY;
-let datas=null;
 
 const Weather = () => {
     const [city, setCity] = useState(localStorage.getItem("selectedCity") || "malappuram");
@@ -17,6 +16,8 @@ const Weather = () => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
     const [open, setOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     const setUnit = (unitOptions, selectedUnit, setUnitCallback) => (
         unitOptions.map(unit => (
@@ -43,7 +44,6 @@ const Weather = () => {
                     const weatherData = await res.json();
                     if (res.ok) {
                         setData(weatherData);
-                        datas=weatherData;
                         console.log(weatherData);
                     } 
                     else {
@@ -75,8 +75,6 @@ const Weather = () => {
     const openUnits=()=>{
         setOpen(!open) 
     }
-
-    const navigate = useNavigate()
 
     return (
         <div className="weather-app">
@@ -169,7 +167,21 @@ const Weather = () => {
                                 ? <p className="normal-text">Average Temperature: {day.day.avgtemp_c}°C</p>
                                 : <p className="normal-text">Average Temperature: {day.day.avgtemp_f}°F</p>
                             }
-                            <button className="more-button" onClick={()=>navigate("/day", { state: { selectedDay: day, data } })}>Show More</button>
+                            <button className="more-button" onClick={()=>
+                                navigate("/day", {
+                                    state: {
+                                        selectedDay: day,
+                                        data,
+                                        tempUnit: tempUnit,
+                                        speedUnit: speedUnit,
+                                        distanceUnit: distanceUnit,
+                                        pressureUnit: pressureUnit,
+                                        precipitationUnit: precipitationUnit,
+                                    }
+                                })
+                            }>
+                                Show More
+                            </button>
                         </div>
                         ))}
                     </div>
@@ -186,7 +198,21 @@ const Weather = () => {
                                     ? <p className="normal-text">Temperature: {hour.temp_c}°C</p>
                                     : <p className="normal-text">Temperature: {hour.temp_f}°F</p>
                                 }
-                                <button className="more-button" onClick={()=>navigate("/hour", {state: {selectedHour: hour, data}})}>Show More</button>
+                                <button className="more-button" onClick={()=>
+                                    navigate("/hour", {
+                                        state: {
+                                            selectedHour: hour, 
+                                            data, 
+                                            tempUnit: tempUnit,
+                                            speedUnit: speedUnit,
+                                            distanceUnit: distanceUnit,
+                                            pressureUnit: pressureUnit,
+                                            precipitationUnit: precipitationUnit,
+                                        }
+                                    })
+                                }>
+                                    Show More
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -195,6 +221,7 @@ const Weather = () => {
         </div>
     );
 };
-export { Weather, datas };
+export  default Weather;
+
 
 
