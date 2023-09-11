@@ -21,13 +21,13 @@ export default function Hour({tempUnit, speedUnit, pressureUnit, precipitationUn
                             {tempUnit === "°C" 
                                 ? (
                                     <>
-                                        <p className="current-temp">Temperature: {hour.temp_c}°C</p>
+                                        <p className="current-temp">{hour.temp_c}°C</p>
                                         <p className="normal-text">Feels Like: {hour.feelslike_c}°C</p>
                                     </>
                                 ) 
                                 : (
                                     <>
-                                        <p className="current-temp">Temperature: {hour.temp_f}°F</p>
+                                        <p className="current-temp">{hour.temp_f}°F</p>
                                         <p className="normal-text">Feels Like: {hour.feelslike_f}°F</p>
                                     </>
                                 )
