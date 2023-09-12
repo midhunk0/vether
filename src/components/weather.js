@@ -156,9 +156,9 @@ const Weather = () => {
                         </div>
                     </div>
 
-                    <h3>7 Day Forecast</h3>
+                    <h3>3 Day Forecast</h3>
                     <div className="day">
-                        {data.forecast.forecastday.slice(0, 7).map((day, index) => (
+                        {data.forecast.forecastday.slice(0, 3).map((day, index) => (
                         <div key={index} className="one-day">
                             <p className="normal-text">{day.date}</p>
                             <p className="normal-text">{day.day.condition.text}</p>

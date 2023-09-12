@@ -228,6 +228,10 @@ h1, h3{
     border-radius: 16px;
 }
 
+.one-day{
+    min-width: 600px;
+}
+
 .normal-div{
     display: flex;
     flex-direction: column;
