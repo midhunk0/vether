@@ -260,3 +260,7 @@ h1, h3{
         width: calc(100vw - 81px);
     }
 }
+
+.idk{
+    color: white;
+}
