@@ -230,6 +230,9 @@ h1, h3{
 
 .one-day{
     min-width: 600px;
+    @media (max-width:700px) {
+        min-width: 300px;
+    }
 }
 
 .normal-div{
@@ -259,8 +262,4 @@ h1, h3{
     @media (max-width: 700px){
         width: calc(100vw - 81px);
     }
-}
-
-.idk{
-    color: white;
 }
