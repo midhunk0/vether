@@ -177,6 +177,7 @@ h1, h3{
     display: flex;
     justify-content: space-around;
     gap: 10px;
+    align-items: center;
 }
 
 .current111{
@@ -203,7 +204,7 @@ h1, h3{
     font-weight: bold;
 }
 
-.current11 img{
+img{
     width: 140px;
     height: 140px;
 }
@@ -233,27 +234,12 @@ h1, h3{
     border-radius: 16px;
 }
 
-@media (max-width: 1024px){
-    .current-weather{
-        flex-direction: column;
-    }
-
-    .current1, .current21, .current22{
-        width: calc(100vw - 81px);
-    }
-}
-
-@media (max-width: 700px){
-    .current2{
-        flex-direction: column;
-    }
-}
-
 .day{
     display: flex;
     gap: 20px;
     overflow-x: auto;
 }
+
 .hour{
     display: flex;
     gap: 20px;
@@ -264,16 +250,24 @@ h1, h3{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-width: 600px;
     padding: 10px;
     gap: 10px;
     background: #395B64;
     border: none;
     border-radius: 16px;    
-    @media (max-width:700px) {
-        min-width: 300px;
-    }
+}
+
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.day-div{
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
 }
 
 .one-hour{
@@ -301,9 +295,6 @@ h1, h3{
 .full-div{
     display: flex;
     gap: 20px;
-    @media (max-width: 700px){
-        flex-direction: column;
-    }
 }
 
 .half-div{
@@ -313,7 +304,28 @@ h1, h3{
     width: 50vw;
     padding: 20px;
     border-radius: 16px;
-    @media (max-width: 700px){
+}
+
+@media (max-width: 1024px){
+    .current-weather{
+        flex-direction: column;
+    }
+
+    .current1, .current21, .current22{
+        width: calc(100vw - 81px);
+    }
+}
+
+@media (max-width: 700px){
+    .current2, .full-div{
+        flex-direction: column;
+    }
+
+    .one-day{
+        min-width: 300px;
+    }
+
+    .half-div{
         width: calc(100vw - 81px);
     }
 }

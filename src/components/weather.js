@@ -159,30 +159,34 @@ const Weather = () => {
                     <h3>3 Day Forecast</h3>
                     <div className="day">
                         {data.forecast.forecastday.slice(0, 3).map((day, index) => (
-                        <div key={index} className="one-day">
-                            <p className="normal-text">{day.date}</p>
-                            <p className="normal-text">{day.day.condition.text}</p>
-                            <img src={day.day.condition.icon} alt={day.day.condition.text}/>
-                            {tempUnit === "°C" 
-                                ? <p className="normal-text">Average Temperature: {day.day.avgtemp_c}°C</p>
-                                : <p className="normal-text">Average Temperature: {day.day.avgtemp_f}°F</p>
-                            }
-                            <button className="more-button" onClick={()=>
-                                navigate("/day", {
-                                    state: {
-                                        selectedDay: day,
-                                        data,
-                                        tempUnit: tempUnit,
-                                        speedUnit: speedUnit,
-                                        distanceUnit: distanceUnit,
-                                        pressureUnit: pressureUnit,
-                                        precipitationUnit: precipitationUnit,
-                                    }
-                                })
-                            }>
-                                Show More
-                            </button>
-                        </div>
+                            <div key={index} className="one-day">
+                                <div className="details">
+                                    <div className="day-div">
+                                        <p className="normal-text">{day.date}</p>
+                                        <p className="current-condition">{day.day.condition.text}</p>
+                                        {tempUnit === "°C" 
+                                            ? <p className="normal-text">{day.day.avgtemp_c}°C</p>
+                                            : <p className="normal-text">{day.day.avgtemp_f}°F</p>
+                                        }
+                                    </div>
+                                    <img src={day.day.condition.icon} alt={day.day.condition.text}/>
+                                </div>
+                                <button className="more-button" onClick={()=>
+                                    navigate("/day", {
+                                        state: {
+                                            selectedDay: day,
+                                            data,
+                                            tempUnit: tempUnit,
+                                            speedUnit: speedUnit,
+                                            distanceUnit: distanceUnit,
+                                            pressureUnit: pressureUnit,
+                                            precipitationUnit: precipitationUnit,
+                                        }
+                                    })
+                                }>
+                                    Show More
+                                </button>
+                            </div>
                         ))}
                     </div>
 
