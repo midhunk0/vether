@@ -99,6 +99,7 @@ const Weather = () => {
             {error && <p>{error}</p>}
             {data && data.forecast && data.forecast.forecastday &&(
                 <div>
+                    <h3>Current Weather</h3>
                     <div className="current-weather">                            
                         <div className="current1">
                             <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
@@ -165,8 +166,8 @@ const Weather = () => {
                                         <p className="normal-text">{day.date}</p>
                                         <p className="current-condition">{day.day.condition.text}</p>
                                         {tempUnit === "°C" 
-                                            ? <p className="normal-text">{day.day.avgtemp_c}°C</p>
-                                            : <p className="normal-text">{day.day.avgtemp_f}°F</p>
+                                            ? <p className="current-temp">{day.day.avgtemp_c}°C</p>
+                                            : <p className="current-temp">{day.day.avgtemp_f}°F</p>
                                         }
                                     </div>
                                     <img src={day.day.condition.icon} alt={day.day.condition.text}/>
@@ -195,13 +196,17 @@ const Weather = () => {
                     <div className="hour">
                         {data.forecast.forecastday[0].hour.map((hour, index) => (
                             <div key={index} className="one-hour">
-                                <p className="normal-text">Time: {hour.time.split(' ')[1]}</p>
-                                <p className="normal-text">{hour.condition.text}</p>
-                                <img src={hour.condition.icon} alt={hour.condition.text}/>
-                                {tempUnit === "°C" 
-                                    ? <p className="normal-text">Temperature: {hour.temp_c}°C</p>
-                                    : <p className="normal-text">Temperature: {hour.temp_f}°F</p>
-                                }
+                                <div className="details">
+                                    <div className="day-div">
+                                        <p className="normal-text">{hour.time.split(' ')[1]}</p>
+                                        <p className="current-condition">{hour.condition.text}</p>
+                                        {tempUnit === "°C" 
+                                            ? <p className="current-temp">{hour.temp_c}°C</p>
+                                            : <p className="current-temp">{hour.temp_f}°F</p>
+                                        }
+                                    </div>
+                                    <img src={hour.condition.icon} alt={hour.condition.text}/>
+                                </div>
                                 <button className="more-button" onClick={()=>
                                     navigate("/hour", {
                                         state: {
