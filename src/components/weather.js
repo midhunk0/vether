@@ -98,25 +98,25 @@ const Weather = () => {
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {data && data.forecast && data.forecast.forecastday &&(
-                <div>
+                <div className="main-bar">
                     <h3>Current Weather</h3>
                     <div className="current-weather">                            
                         <div className="current1">
                             <h2>Details of {data.location.name}, {data.location.region}, {data.location.country}</h2>
                             <div className="current11">
                                 <div className="current111">
-                                    <p className="current-condition">{data.current.condition.text}</p>
+                                    <p className="condition">{data.current.condition.text}</p>
                                     {tempUnit === "°C" 
                                         ? (
                                             <>
-                                                <p className="current-temp">{data.current.temp_c}°C</p>
-                                                <p className="normal-text">Feels like {data.current.feelslike_c}°C</p>
+                                                <p className="temp">{data.current.temp_c}°C</p>
+                                                <p className="normal">Feels like {data.current.feelslike_c}°C</p>
                                             </>
                                         ) 
                                         : (
                                             <>
-                                                <p className="current-temp">{data.current.temp_f}°F</p>
-                                                <p className="normal-text">Feels like {data.current.feelslike_f}°F</p>
+                                                <p className="temp">{data.current.temp_f}°F</p>
+                                                <p className="normal">Feels like {data.current.feelslike_f}°F</p>
                                             </>
                                         )
                                     }
@@ -127,32 +127,32 @@ const Weather = () => {
                         <div className="current2">
                             <div className="current21">
                                 {speedUnit === "kph" 
-                                    ? <p className="normal-text">Wind Speed: {data.current.wind_kph}kph</p>
-                                    : <p className="normal-text">Wind Speed: {data.current.wind_mph}mph</p>
+                                    ? <p className="normal">Wind Speed: {data.current.wind_kph}kph</p>
+                                    : <p className="normal">Wind Speed: {data.current.wind_mph}mph</p>
                                 }
-                                <p className="normal-text">Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
-                                <p className="normal-text">Humidity: {data.current.humidity}</p>
-                                <p className="normal-text">Clouds: {data.current.cloud}</p>
-                                <p className="normal-text">UV: {data.current.uv}</p>
+                                <p className="normal">Wind Direction: {data.current.wind_degree} {data.current.wind_dir}</p>
+                                <p className="normal">Humidity: {data.current.humidity}</p>
+                                <p className="normal">Clouds: {data.current.cloud}</p>
+                                <p className="normal">UV: {data.current.uv}</p>
                             </div>
                             <div className="current22">
                                 {pressureUnit === "mb" 
-                                    ? <p className="normal-text">Pressure: {data.current.pressure_mb}mb</p>
-                                    : <p className="normal-text">Pressure: {data.current.pressure_in}in</p>
+                                    ? <p className="normal">Pressure: {data.current.pressure_mb}mb</p>
+                                    : <p className="normal">Pressure: {data.current.pressure_in}in</p>
                                 }
                                 {precipitationUnit === "mm" 
-                                    ? <p className="normal-text">Precipitation: {data.current.precip_mm}mm</p>
-                                    : <p className="normal-text">Precipitation: {data.current.precip_in}in</p>
+                                    ? <p className="normal">Precipitation: {data.current.precip_mm}mm</p>
+                                    : <p className="normal">Precipitation: {data.current.precip_in}in</p>
                                 }
                                 {distanceUnit === "km" 
-                                    ? <p className="normal-text">Visual clarity: {data.current.vis_km}km</p> 
-                                    : <p className="normal-text">Visual clarity: {data.current.vis_miles}miles</p>
+                                    ? <p className="normal">Visual clarity: {data.current.vis_km}km</p> 
+                                    : <p className="normal">Visual clarity: {data.current.vis_miles}miles</p>
                                 }
                                 {speedUnit === "kph" 
-                                    ? <p className="normal-text">Gust Speed: {data.current.gust_kph}kph</p>
-                                    : <p className="normal-text">Gust Speed: {data.current.gust_mph}mph</p>
+                                    ? <p className="normal">Gust Speed: {data.current.gust_kph}kph</p>
+                                    : <p className="normal">Gust Speed: {data.current.gust_mph}mph</p>
                                 }
-                                <p className="normal-text">Lat: {data.location.lat}, Lat: {data.location.lon}</p>
+                                <p className="normal">Lat: {data.location.lat}, Lat: {data.location.lon}</p>
                             </div>
                         </div>
                     </div>
@@ -163,11 +163,11 @@ const Weather = () => {
                             <div key={index} className="one-day">
                                 <div className="details">
                                     <div className="day-div">
-                                        <p className="normal-text">{day.date}</p>
-                                        <p className="current-condition">{day.day.condition.text}</p>
+                                        <p className="normal">{day.date}</p>
+                                        <p className="condition">{day.day.condition.text}</p>
                                         {tempUnit === "°C" 
-                                            ? <p className="current-temp">{day.day.avgtemp_c}°C</p>
-                                            : <p className="current-temp">{day.day.avgtemp_f}°F</p>
+                                            ? <p className="temp">{day.day.avgtemp_c}°C</p>
+                                            : <p className="temp">{day.day.avgtemp_f}°F</p>
                                         }
                                     </div>
                                     <img src={day.day.condition.icon} alt={day.day.condition.text}/>
@@ -195,14 +195,14 @@ const Weather = () => {
                     <h3>Hourly Forecast</h3>
                     <div className="hour">
                         {data.forecast.forecastday[0].hour.map((hour, index) => (
-                            <div key={index} className="one-hour">
+                            <div key={index} className="one-hour" >
                                 <div className="details">
                                     <div className="day-div">
-                                        <p className="normal-text">{hour.time.split(' ')[1]}</p>
-                                        <p className="current-condition">{hour.condition.text}</p>
+                                        <p className="normal">{hour.time.split(' ')[1]}</p>
+                                        <p className="condition">{hour.condition.text}</p>
                                         {tempUnit === "°C" 
-                                            ? <p className="current-temp">{hour.temp_c}°C</p>
-                                            : <p className="current-temp">{hour.temp_f}°F</p>
+                                            ? <p className="temp">{hour.temp_c}°C</p>
+                                            : <p className="temp">{hour.temp_f}°F</p>
                                         }
                                     </div>
                                     <img src={hour.condition.icon} alt={hour.condition.text}/>

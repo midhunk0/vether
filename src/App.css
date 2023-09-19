@@ -12,28 +12,20 @@ body{
     overflow-x: hidden;
 }
 
+.weather-app{
+    padding: 20px;
+    background: #E7F6F2;
+    color: #E7F6F2;
+}
+
+h1{
+    color: #2C3333;
+}
+
 .topbar{
     display: flex;
     justify-content: space-between;
     overflow-x: hidden;
-}
-
-.day-forecast{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background: #E7F6F2;
-    color: #E7F6F2;
-}
-
-.hour-forecast{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background: #E7F6F2;
-    color: #E7F6F2;
 }
 
 input{
@@ -59,54 +51,19 @@ input::placeholder{
     transition: background-color 0.3s, color 0.3s;
 }
 
-.more-button{
-    width: 100px;
-    padding: 10px;
-    color: #E7F6F2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    background: #2C3333;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 0px 0px 25px #2C3333;
-    transition: transform 0.5s ease-in-out;
+.offcanvas-menu{
+    width: 250px;
+    top: 0;
+    right: 0;
+    background: #E7F6F2;
+    color: #2C3333;
+    position: absolute;
+    transform: translateY(-100%);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.less-button{
-    width: 100px;
-    padding: 10px;
-    color: #E7F6F2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    background: #2C3333;
-    text-decoration: none;
-    text-align: center;
-}
-
-.more-button{
-    box-shadow: 0px 0px 25px #2C3333;
-    transition: transform 0.5s ease-in-out;
-}
-
-.more-button:hover {
-    box-shadow: 0px 0px 35px #2C3333;
-    transform: scale(1.2);
-}
-
-.close-button{
-    width: 210px;
-    margin: 20px 20px 0;
-    padding: 10px;
-    background: #395B64;
-    color: #E7F6F2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+.offcanvas-menu.open{
+    transform: translateX(0);
 }
 
 .unit-button{
@@ -126,19 +83,16 @@ input::placeholder{
     cursor: auto;
 }
 
-.offcanvas-menu{
-    width: 250px;
-    top: 0;
-    right: 0;
-    background: #E7F6F2;
-    color: #2C3333;
-    position: absolute;
-    transform: translateY(-100%);
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.offcanvas-menu.open{
-    transform: translateX(0);
+.close-button{
+    width: 210px;
+    margin: 20px 20px 0;
+    padding: 10px;
+    background: #395B64;
+    color: #E7F6F2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 ul{
@@ -146,16 +100,13 @@ ul{
     list-style: none;
 }
 
-.weather-app{
-    padding: 20px;
-    background: #E7F6F2;
-    color: #E7F6F2;
-}
+/* .main-page{
+    
+} */
 
-h1, h3{
+h3{
     color: #2C3333;
 }
-
 
 .current-weather{
     display: flex;
@@ -186,20 +137,20 @@ h1, h3{
     justify-content: center;
 }
 
-.current-condition{
+.condition{
     margin: 0;
     margin-bottom: 10px;
     font-size: 36px;
     font-weight: bold;
 }
 
-.current-temp{
+.temp{
     margin: 0;
     font-size: 42px;
     font-weight: bolder;
 }
 
-.normal-text{
+.normal{
     font-size: 18px;
     font-weight: bold;
 }
@@ -240,12 +191,6 @@ img{
     overflow-x: auto;
 }
 
-.hour{
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-}
-
 .one-day{
     display: flex;
     flex-direction: column;
@@ -254,7 +199,7 @@ img{
     gap: 10px;
     background: #395B64;
     border: none;
-    border-radius: 16px;    
+    border-radius: 16px; 
 }
 
 .details{
@@ -267,6 +212,12 @@ img{
     display: flex;
     flex-direction: column;
     align-items: self-start;
+}
+
+.hour{
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
 }
 
 .one-hour{
@@ -330,4 +281,57 @@ img{
     .half-div{
         width: calc(100vw - 81px);
     }
+}
+
+
+.day-forecast{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #E7F6F2;
+    color: #E7F6F2;
+}
+
+.hour-forecast{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #E7F6F2;
+    color: #E7F6F2;
+}
+
+
+.more-button{
+    width: 100px;
+    padding: 10px;
+    color: #E7F6F2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background: #2C3333;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0px 0px 25px #2C3333;
+    transition: transform 0.5s ease-in-out;
+}
+
+.less-button{
+    width: 100px;
+    padding: 10px;
+    color: #E7F6F2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background: #2C3333;
+    text-decoration: none;
+    text-align: center;
+}
+
+.more-button:hover {
+    box-shadow: 0px 0px 35px #2C3333;
+    transform: scale(1.2);
 }
