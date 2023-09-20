@@ -10,15 +10,15 @@ maps -- temperature, clouds, ...
 
 body{
     overflow-x: hidden;
-}
-
-.weather-app{
-    padding: 20px;
     background: #E7F6F2;
     color: #E7F6F2;
 }
 
-h1{
+.weather-app{
+    padding: 20px;
+}
+
+h1, h3{
     color: #2C3333;
 }
 
@@ -40,7 +40,7 @@ input::placeholder{
     color: #A5C9CA;
 }
 
-.open-button{
+.open-button, .close-button{
     width: 100px;
     padding: 10px;
     background: #395B64;
@@ -49,6 +49,11 @@ input::placeholder{
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+}
+
+.close-button{
+    width: 210px;
+    margin: 20px 20px 0;
 }
 
 .offcanvas-menu{
@@ -83,18 +88,6 @@ input::placeholder{
     cursor: auto;
 }
 
-.close-button{
-    width: 210px;
-    margin: 20px 20px 0;
-    padding: 10px;
-    background: #395B64;
-    color: #E7F6F2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
 ul{
     padding: 20px;
     list-style: none;
@@ -103,10 +96,6 @@ ul{
 /* .main-page{
     
 } */
-
-h3{
-    color: #2C3333;
-}
 
 .current-weather{
     display: flex;
@@ -165,7 +154,7 @@ img{
     gap: 20px;
 }
 
-.current21{
+.current21, .current22{
     display: flex;
     flex-direction: column;
     width: 20vw;
@@ -175,23 +164,13 @@ img{
     border-radius: 16px;
 }
 
-.current22{
-    display: flex;
-    flex-direction: column;
-    width: 20vw;
-    padding: 20px;
-    background: #395B64;
-    border: none;
-    border-radius: 16px;
-}
-
-.day{
+.day, .hour{
     display: flex;
     gap: 20px;
     overflow-x: auto;
 }
 
-.one-day{
+.one-day, .one-hour{
     display: flex;
     flex-direction: column;
     min-width: 500px;
@@ -214,44 +193,50 @@ img{
     align-items: self-start;
 }
 
-.hour{
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-}
-
-.one-hour{
-    display: flex;
-    flex-direction: column;
-    min-width: 500px;
-    padding: 20px;
-    gap: 10px;
-    background: #395B64;
-    border: none;
-    border-radius: 16px;
-}
-
-.normal-div{
-    display: flex;
-    flex-direction: column;
-    background: #395B64;
-    color: #E7F6F2;
-    padding: 20px;
-    border-radius: 16px;
-}
-
 .full-div{
     display: flex;
     gap: 20px;
 }
 
-.half-div{
+.half-div, .normal-div{
     display: flex;
     flex-direction: column;
     background: #395B64;
-    width: 50vw;
     padding: 20px;
     border-radius: 16px;
+}
+
+.half-div{
+    width: 50vw;
+}
+
+.day-forecast, .hour-forecast{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.more-button, .less-button{
+    width: 100px;
+    padding: 10px;
+    color: #E7F6F2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background: #2C3333;
+    text-decoration: none;
+    text-align: center;
+}
+.more-button{
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0px 0px 25px #2C3333;
+}
+
+.more-button:hover {
+    box-shadow: 0px 0px 35px #2C3333;
+    transform: scale(1.2);
 }
 
 @media (max-width: 1024px){
@@ -270,68 +255,11 @@ img{
         flex-direction: column;
     }
 
-    .one-day{
-        min-width: 300px;
-    }
-
-    .one-hour{
+    .one-day, .one-hour{
         min-width: 300px;
     }
 
     .half-div{
         width: calc(100vw - 81px);
     }
-}
-
-
-.day-forecast{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background: #E7F6F2;
-    color: #E7F6F2;
-}
-
-.hour-forecast{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background: #E7F6F2;
-    color: #E7F6F2;
-}
-
-
-.more-button{
-    width: 100px;
-    padding: 10px;
-    color: #E7F6F2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    background: #2C3333;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 0px 0px 25px #2C3333;
-    transition: transform 0.5s ease-in-out;
-}
-
-.less-button{
-    width: 100px;
-    padding: 10px;
-    color: #E7F6F2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    background: #2C3333;
-    text-decoration: none;
-    text-align: center;
-}
-
-.more-button:hover {
-    box-shadow: 0px 0px 35px #2C3333;
-    transform: scale(1.2);
 }
