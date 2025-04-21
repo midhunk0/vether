@@ -78,7 +78,7 @@ const Weather = () => {
 
     return (
         <div className="weather-app">
-            <h1>Weather App</h1>
+            <h1>Vether</h1>
             <div className="topbar">
                 <input type="text" placeholder="Enter city name" value={city} onChange={(e) => setCity(e.target.value)}/>
                 <button className="open-button" onClick={openUnits}>Open Units</button>
