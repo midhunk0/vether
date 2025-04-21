@@ -1,5 +1,7 @@
 # Weather app
 
+![Screenshot 2025-04-21 075759](https://github.com/user-attachments/assets/7d25113c-888e-4912-bbde-d142f2660005)
+
 A simple and intuitive weather app that provides current weather conditions and forecasts. Users can check temperature, humidity, wind speed, and more for any location in real-time.
 
 ## Features
