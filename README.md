@@ -1,4 +1,4 @@
-# Weather app
+# Vether
 
 ![Screenshot 2025-04-21 075759](https://github.com/user-attachments/assets/7d25113c-888e-4912-bbde-d142f2660005)
 
@@ -13,11 +13,11 @@ A simple and intuitive weather app that provides current weather conditions and 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/midhunk0/weather.git
+    git clone https://github.com/midhunk0/vether.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd weather
+    cd vether
     ```
 3. Install dependencies:
     ```sh
